@@ -69,39 +69,43 @@ public class ReadQuery {
         
         table += "<table border=1>";
         
-        while(this.results.next()){
-        
-            JunkFood junkFood = new JunkFood();
-            junkFood.setJunkFoodID(this.results.getInt("junkFoodID"));
-            junkFood.setJunkFoodName(this.results.getString("junkFoodName"));
-            junkFood.setJunkFoodType(this.results.getString("junkFoodType"));
-            junkFood.setCalories(this.results.getInt("calories"));
-            junkFood.setJunkFoodRank(this.results.getInt("JunkFoodRank"));
-        
-            table += "<tr>";
+        try {
+            while(this.results.next()){
+                
+                JunkFood junkFood = new JunkFood();
+                junkFood.setJunkFoodID(this.results.getInt("junkFoodID"));
+                junkFood.setJunkFoodName(this.results.getString("junkFoodName"));
+                junkFood.setJunkFoodType(this.results.getString("junkFoodType"));
+                junkFood.setCalories(this.results.getInt("calories"));
+                junkFood.setJunkFoodRank(this.results.getInt("JunkFoodRank"));
+                
+                table += "<tr>";
                 table += "<td>";
-                    table += junkFood.getJunkFoodID();
+                table += junkFood.getJunkFoodID();
                 table += "</td>";
                 
                 table += "<td>";
-                    table += junkFood.getJunkFoodName();
+                table += junkFood.getJunkFoodName();
                 table += "</td>";
                 
                 table += "<td>";
-                    table += junkFood.getJunkFoodType();
+                table += junkFood.getJunkFoodType();
                 table += "</td>";
                 
                 table += "<td>";
-                    table += junkFood.getCalories();
+                table += junkFood.getCalories();
                 table += "</td>";
                 
                 table += "<td>";
-                    table += junkFood.getJunkFoodRank();
+                table += junkFood.getJunkFoodRank();
                 table += "</td>";
                 
                 
-            table += "</tr>";
-            
+                table += "</tr>";
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
